@@ -1,0 +1,1 @@
+{"name":"get_symbol","description":"Extracts ONLY the definition and body of a specific function, class, or method.","parameters":{"properties":{"path":{"title":"Path","type":"string"},"symbol_name":{"title":"Symbol Name","type":"string"}},"required":["path","symbol_name"],"title":"get_symbolArguments","type":"object"}}

@@ -1,0 +1,1 @@
+{"name":"get_file_outline","description":"Parses a source file into a structural outline using Tree-sitter.","parameters":{"properties":{"path":{"title":"Path","type":"string"}},"required":["path"],"title":"get_file_outlineArguments","type":"object"}}

@@ -1,0 +1,69 @@
+name: Antigravity Ecosystem CI & Token Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Linting & Token Tools
+        run: |
+          pip install ruff tiktoken mcp
+
+      - name: Ruff Lint & Format Check
+        run: |
+          ruff check mcp tests scripts workflows --config config/ruff.toml
+          ruff format --check mcp tests scripts workflows --config config/ruff.toml
+
+      - name: Enforce Token Budget (< 1000 Tokens on AGENTS.md)
+        run: |
+          python -c "
+          import tiktoken, sys
+          enc = tiktoken.get_encoding('cl100k_base')
+          with open('AGENTS.md', 'r', encoding='utf-8') as f:
+              tokens = len(enc.encode(f.read()))
+          print(f'AGENTS.md token footprint: {tokens}')
+          if tokens >= 1000:
+              print(f'ERROR: AGENTS.md exceeds 1000-token limit ({tokens} >= 1000)', file=sys.stderr)
+              sys.exit(1)
+          "
+
+      - name: Validate MCP Schemas & Code-Mode Tools API Parity
+        run: |
+          python -c "
+          import ast, json, pathlib, sys
+          schemas = {json.load(p.open(encoding='utf-8'))['name'] for p in pathlib.Path('mcp/schemas').glob('*.json')}
+          exported = set()
+          for m in pathlib.Path('mcp/tools_api').glob('*.py'):
+              if m.name == '__init__.py':
+                  continue
+              tree = ast.parse(m.read_text(encoding='utf-8'))
+              for n in tree.body:
+                  if isinstance(n, ast.Assign) and any(getattr(t, 'id', '') == '__all__' for t in n.targets):
+                      exported.update(e.value for e in n.value.elts if isinstance(e, ast.Constant))
+          upfront = {n.name for n in ast.parse(pathlib.Path('mcp/server.py').read_text(encoding='utf-8')).body if isinstance(n, ast.FunctionDef) and any('tool' in ast.dump(d) for d in n.decorator_list)}
+          missing = schemas - (exported | upfront)
+          assert not missing, f'Missing schema exports: {missing}'
+          print(f'Validated {len(schemas)} schemas across {len(exported)} tools_api exports and {len(upfront)} upfront tools.')
+          "
+
+      - name: Run Antigravity IDE & Infinite-Context Test Suite
+        run: |
+          python -m unittest discover -s tests -v
+
+      - name: Validate POSIX Shell Scripts
+        run: |
+          bash -n installer/setup.sh installer/uninstall.sh scripts/setup/export_mcp.sh scripts/setup/register_mcp.sh scripts/setup/doctor.sh scripts/setup/verify_skill.sh
+          echo "All shell scripts passed syntax checks."

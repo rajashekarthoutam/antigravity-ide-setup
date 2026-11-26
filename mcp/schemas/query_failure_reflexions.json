@@ -1,0 +1,1 @@
+{"name":"query_failure_reflexions","description":"\n    Searches recorded failure reflexions and anti-patterns to prevent repeating prior mistakes or failed approaches.\n    ","parameters":{"properties":{"query":{"default":"","title":"Query","type":"string"}},"title":"query_failure_reflexionsArguments","type":"object"}}

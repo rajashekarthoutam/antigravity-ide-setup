@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.ruff_cache/
+.pytest_cache/
+*.log
+.DS_Store
+Thumbs.db
+.agents/mcp_config.json
+.gravitas/
+.vscode/
+*.zip
+*.db
+*.db-wal
+*.db-shm
+dist/
+

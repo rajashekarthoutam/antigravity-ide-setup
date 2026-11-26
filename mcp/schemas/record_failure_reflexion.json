@@ -1,0 +1,14 @@
+{
+  "name": "record_failure_reflexion",
+  "description": "Self-reflective Reflexion engine. Records a verified anti-pattern and countermeasure in persistent cross-session memory (memory.json) to guarantee Gravitas Invariant 4 (never repeat failed approaches).",
+  "parameters": {
+    "properties": {
+      "countermeasure": {"title": "Countermeasure", "type": "string"},
+      "error_signature": {"title": "Error Signature", "type": "string"},
+      "root_cause": {"title": "Root Cause", "type": "string"}
+    },
+    "required": ["error_signature", "root_cause", "countermeasure"],
+    "title": "record_failure_reflexionArguments",
+    "type": "object"
+  }
+}

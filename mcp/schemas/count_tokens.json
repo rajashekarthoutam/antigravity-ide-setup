@@ -1,0 +1,1 @@
+{"name":"count_tokens","description":"Calculates exact token count for context budgeting.","parameters":{"properties":{"text":{"title":"Text","type":"string"}},"required":["text"],"title":"count_tokensArguments","type":"object"}}

@@ -1,0 +1,13 @@
+{
+  "name": "search_skills",
+  "description": "Searches installed skills/ and skills_vault/ catalogs on demand, keeping baseline customization tokens near zero until a domain skill is needed.",
+  "parameters": {
+    "properties": {
+      "limit": {"default": 5, "title": "Limit", "type": "integer"},
+      "query": {"title": "Query", "type": "string"}
+    },
+    "required": ["query"],
+    "title": "search_skillsArguments",
+    "type": "object"
+  }
+}

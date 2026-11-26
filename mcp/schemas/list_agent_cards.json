@@ -1,0 +1,1 @@
+{"name":"list_agent_cards","description":"\n    Lists all registered Google A2A AgentCard specifications in the Antigravity multi-agent swarm.\n    ","parameters":{"properties":{},"title":"list_agent_cardsArguments","type":"object"}}

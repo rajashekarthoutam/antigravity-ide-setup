@@ -1,0 +1,1 @@
+{"name":"restore_checkpoint","description":"\n    Instantly restores files from ~/.gemini/checkpoints/\u003ccheckpoint_id\u003e/ back to\n    their original locations with zero token re-read cost.\n    ","parameters":{"properties":{"checkpoint_id":{"title":"Checkpoint Id","type":"string"}},"required":["checkpoint_id"],"title":"restore_checkpointArguments","type":"object"}}

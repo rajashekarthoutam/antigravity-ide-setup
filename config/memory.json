@@ -1,0 +1,76 @@
+{
+  "memories": [
+    {
+      "id": 1,
+      "content": "Use short-lived WAL SQLite connections with busy_timeout=5000 and atomic closes to avoid file locks during concurrent Windows/Linux sessions.",
+      "user_id": "default",
+      "metadata": "architecture"
+    },
+    {
+      "id": 2,
+      "category": "anti_pattern",
+      "error_signature": "whole_file_read_bloat",
+      "root_cause": "Unbounded full-file ingestion into prompt context inflates per-turn input tokens quadratically.",
+      "countermeasure": "Use get_file_outline/get_symbol first and read_file with bounded StartLine/EndLine (<= 150 lines) or virtualize large outputs.",
+      "created_at": "persistent_reflexion",
+      "user_id": "default"
+    },
+    {
+      "id": 3,
+      "content": "FastMCP server compatibility requires mcp>=1.28.1,<2.0.0; never create mcp/__init__.py in repo so PyPI mcp.server.fastmcp never gets shadowed.",
+      "user_id": "default",
+      "metadata": "architecture"
+    },
+    {
+      "id": 4,
+      "content": "Code-Mode MCP caps upfront @app.tool() schemas at <= 10 (currently 9) while exposing all 26 schema capabilities on demand via discover_mcp_tools() and mcp/tools_api/.",
+      "user_id": "default",
+      "metadata": "token_optimization"
+    },
+    {
+      "id": 5,
+      "content": "Infinite-Horizon 90%+ token loop uses preventative ContextVirtualizer FTS5 handles (ctx://), cli_compress noise filtering, DCP dedup/supersede, JetBrains observation masking, and epoch-aligned KV-cache preservation.",
+      "user_id": "default",
+      "metadata": "token_optimization"
+    },
+    {
+      "id": 6,
+      "content": "Convai Laya System-1 local triage (scripts/hooks/laya_gate.py + system1_triage) extracts root causes on CPU (<40ms) with zero LLM generation tokens.",
+      "user_id": "default",
+      "metadata": "architecture"
+    },
+    {
+      "id": 7,
+      "category": "anti_pattern",
+      "error_signature": "quoted_python_redirect_false_positive",
+      "root_cause": "Regex shell scanners matching < or > inside quoted inline scripts (e.g. python -c 'a < b') trigger scope violations.",
+      "countermeasure": "Use quote-aware shell token scanning in scripts/hooks/gravitas_action.py while still flagging double-quoted $(...) and backticks.",
+      "created_at": "persistent_reflexion",
+      "user_id": "default"
+    },
+    {
+      "id": 8,
+      "category": "anti_pattern",
+      "error_signature": "model_eval_false_positive",
+      "root_cause": "Naive \\beval\\( security regex flags PyTorch model.eval() inside legitimate ML skills.",
+      "countermeasure": "Use negative lookbehind (?<!\\.)\\b(?:eval|exec)\\s*\\( to ignore method attributes like model.eval().",
+      "created_at": "persistent_reflexion",
+      "user_id": "default"
+    },
+    {
+      "id": 9,
+      "category": "anti_pattern",
+      "error_signature": "Windows Defender threat quarantine on bleyer.org iverilog",
+      "root_cause": "Installer false positive on unofficial binary mirror.",
+      "countermeasure": "Use clean GitHub release binaries from FPGAwars/toolchain-iverilog.",
+      "created_at": "persistent_reflexion",
+      "user_id": "default"
+    },
+    {
+      "id": 10,
+      "content": "Windows Start Menu supports 1 level of subfolder nesting under Programs cleanly; deploy multi-tool packages directly under Programs/<AppGroup>.",
+      "user_id": "default",
+      "metadata": "general"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "plugins": {
+    "figma": {
+      "installedFrom": {
+        "id": "antigravity-plugins-partners/plugin/figma",
+        "marketplace": "antigravity-plugins-partners",
+        "version": "2.2.208-agy.82ddeba0"
+      }
+    }
+  },
+  "userSettings": {
+    "autoExecutionPolicy": "CASCADE_COMMANDS_AUTO_EXECUTION_EAGER",
+    "enableTerminalSandbox": false,
+    "nonWorkspaceFileAccessPolicy": "AGENT_SETTING_POLICY_ALLOW",
+    "permissionGrantsV2Migrated": true,
+    "permissionPreset": "AGENT_PERMISSION_PRESET_TURBO",
+    "remoteControlEnabled": false,
+    "sandboxEnabledAtV2Migration": false,
+    "verboseConversationSteps": true
+  }
+}

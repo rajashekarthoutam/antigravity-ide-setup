@@ -1,0 +1,23 @@
+[project]
+name = "antigravity-ide-setup"
+version = "2.0.0"
+description = "Cross-platform Antigravity IDE, VS Code, Cursor & Claude Code AI Engineering Runtime with 90%+ Infinite-Horizon Context Compression."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.28.1,<2.0.0",
+    "tiktoken>=0.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.6.0",
+]
+full = [
+    "ast-grep-cli",
+    "llmtrim",
+    "mem0ai",
+    "fastembed",
+    "mcptoon",
+]

@@ -1,0 +1,9 @@
+cache-dir = "~/.cache/ruff"
+extend-exclude = [
+    "plugins/ecc",
+    ".skills_vault",
+    "skills",
+]
+
+[lint]
+ignore = ["BLE001", "S110", "S112", "EXE"]

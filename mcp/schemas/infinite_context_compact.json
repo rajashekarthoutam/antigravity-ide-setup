@@ -1,0 +1,26 @@
+{
+  "name": "infinite_context_compact",
+  "description": "Infinite-Horizon 90%+ Token Engine: epoch-aligned conversation compaction, SQLite FTS5 output virtualization (`ctx://<hash>`), BM25 search, bounded slice retrieval, and 0-LLM CLI output compression.",
+  "parameters": {
+    "properties": {
+      "end_line": {"default": 60, "title": "End Line", "type": "integer"},
+      "epoch_size": {"default": 12, "title": "Epoch Size", "type": "integer"},
+      "force": {"default": false, "title": "Force", "type": "boolean"},
+      "handle": {"default": "", "title": "Handle", "type": "string"},
+      "mode": {
+        "default": "compact",
+        "enum": ["compact", "virtualize", "search", "fetch", "cli_compress"],
+        "title": "Mode",
+        "type": "string"
+      },
+      "payload": {"default": "", "title": "Payload", "type": "string"},
+      "query": {"default": "", "title": "Query", "type": "string"},
+      "start_line": {"default": 1, "title": "Start Line", "type": "integer"},
+      "state_json": {"default": "", "title": "State Json", "type": "string"},
+      "token_budget": {"default": 6000, "title": "Token Budget", "type": "integer"},
+      "window": {"default": 4, "title": "Window", "type": "integer"}
+    },
+    "title": "infinite_context_compactArguments",
+    "type": "object"
+  }
+}
